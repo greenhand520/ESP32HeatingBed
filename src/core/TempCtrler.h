@@ -30,7 +30,7 @@ public:
      * @param count 获取到的当前温度数量
      * @param targetTemp 目标温度
      */
-    void heat(uint16_t curTemp, uint16_t targetTemp);
+    void heat(float curTemp, float targetTemp) const;
 
     uint16_t getAvgTemp();
 

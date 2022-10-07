@@ -8,7 +8,9 @@
 #include <Arduino.h>
 #include "Component.h"
 
-U8G2 screenDriver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin);
+//U8G2 SH1107_12864Driver(uint8_t sdaPin, uint8_t sclPin, uint8_t resetPin);
+
+U8G2 SSD1306_12864Driver(uint8_t sdaPin, uint8_t sclPin);
 
 void screenDriverInit();
 

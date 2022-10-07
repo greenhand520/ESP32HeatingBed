@@ -8,6 +8,8 @@
 #include "core/DormancyEvent.h"
 
 class ButtonDormancyEvent : public DormancyEvent{
+private:
+    uint8_t pin;
 
 public:
 

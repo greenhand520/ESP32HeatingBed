@@ -17,7 +17,7 @@ public:
      * @param count
      * @return
      */
-    virtual uint16_t readTemp(uint8_t count) = 0;
+    virtual float readTemp(uint8_t count) = 0;
 
 
 };

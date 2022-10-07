@@ -2,7 +2,7 @@
 
 ## 简介
 
-使用 ESP32 PICO D4 控制 MOS 管或者可控硅 通断加热，用于 PCB 拆焊台，使用双按键或者单编码器操作，使用 MAX6675 读取热电偶温度。
+使用 ESP32 PICO D4 控制 MOS 管或者可控硅 通断加热，用于 PCB 拆焊台，使用单编码器操作，使用 MAX6675 读取热电偶温度。
 
 使用 PlatformIO + CLion ，使用 Arduino 框架开发，环境配置参见[这里](https://www.jianguoyun.com/p/DcLwExQQjeHjChiP5twEIAA)，或者参见[官方文档](https://docs.platformio.org/en/latest/integration/ide/clion.html#ide-clion)
 

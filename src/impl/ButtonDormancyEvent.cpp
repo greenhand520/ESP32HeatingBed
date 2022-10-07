@@ -4,8 +4,9 @@
 
 #include "ButtonDormancyEvent.h"
 
-ButtonDormancyEvent::ButtonDormancyEvent(uint8_t pin) {
-
+ButtonDormancyEvent::ButtonDormancyEvent(uint8_t _pin) {
+    this->pin = _pin;
+    pinMode(pin, INPUT_PULLUP);
 }
 
 bool ButtonDormancyEvent::isDormancy(unsigned long curTime) {

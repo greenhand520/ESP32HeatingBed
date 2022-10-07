@@ -33,12 +33,12 @@ struct Settings {
     /**
      * 休眠温度 ℃ 0 ～ 100
      */
-    uint16_t dormancyTemp = 80;
+    float dormancyTemp = 80;
 
     /**
      * 初始温度 比低温系膏熔点高几度 ℃
      */
-    uint16_t initTemp = 145;
+    float initTemp = 145;
 
     /**
      * 温度步进 ℃ 1 ～ 10
@@ -104,7 +104,7 @@ struct UIData {
     /**
      * 目标温度
      */
-    uint16_t targetTemp;
+    float targetTemp;
 
     Settings settings = {};
 
