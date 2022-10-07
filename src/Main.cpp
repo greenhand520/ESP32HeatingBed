@@ -18,11 +18,13 @@
 
 #define HEAT_PWM_PIN 15 // GPIO26
 
-#define ROTARY_A_PIN 11 // GPIO27
-#define ROTARY_B_PIN 11 // GPIO14
-#define ROTARY_BTU_PIN 12 // GPIO33
+#define ROTARY_A_PIN 16 // GPIO27
+#define ROTARY_B_PIN 17 // GPIO14
+#define ROTARY_BTU_PIN 13 // GPIO33
 
 #define STOP_BUT_PIN 34 // GPIO5
+#define WS2812_PIN 35
+#define FAN_PIN 36
 
 #define BUZZ_PIN 14 // GPIO25
 
