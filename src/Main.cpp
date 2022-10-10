@@ -9,26 +9,26 @@
 #include "impl/ButtonDormancyEvent.h"
 #include "ui/Display.h"
 
-#define MAX6675_SCK_PIN 35 // GPIO18
-#define MAX6675_CS_PIN 34 // GPIO5
-#define MAX6675_SO_PIN 38 // GPIO19
+#define MAX6675_SCK_PIN 18 // GPIO18
+#define MAX6675_CS_PIN 5 // GPIO5
+#define MAX6675_SO_PIN 19 // GPIO19
 
-#define SDA_PIN 42 // GPIO21
-#define SCL_PIN 39 // GPIO22
+#define SDA_PIN 21 // GPIO21
+#define SCL_PIN 22 // GPIO22
 
-#define HEAT_PWM_PIN 15 // GPIO26
+#define HEAT_PWM_PIN 26 // GPIO26
 
-#define ROTARY_A_PIN 16 // GPIO27
-#define ROTARY_B_PIN 17 // GPIO14
-#define ROTARY_BTU_PIN 13 // GPIO33
+#define ROTARY_A_PIN 27 // GPIO27
+#define ROTARY_B_PIN 14 // GPIO14
+#define ROTARY_BTU_PIN 33 // GPIO33
 
-#define STOP_BUT_PIN 34 // GPIO5
-#define WS2812_PIN 35
-#define FAN_PIN 36
+#define STOP_BUT_PIN 5 // GPIO5
+#define WS2812_PIN 18 // GPIO18
+#define FAN_PIN 23 // GPIO23
 
-#define BUZZ_PIN 14 // GPIO25
+#define BUZZ_PIN 25 // GPIO25
 
-#define VBUS_ADC_PIN // GPIO4
+#define VBUS_ADC_PIN 4 // GPIO4
 
 UIData uiData{};
 ButtonDormancyEvent *buttonDormancyEvent = new ButtonDormancyEvent(STOP_BUT_PIN);
