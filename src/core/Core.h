@@ -16,11 +16,11 @@
 
 class Core {
 private:
-    Buzz *buzz;
+    Buzz buzz;
     Ctrl *ctrl;
     DormancyEvent *dormancyEvent;
     TempMeasure *tempMeasure;
-    TempCtrler *tempCtrler;
+    TempCtrler tempCtrler;
 //    UIData uiData;
     // 一些状态信息
     unsigned long dormancyStartTime = UINT32_MAX;
@@ -37,14 +37,19 @@ public:
     /**
      * 图形驱动之前调用
      * @param buzzPin
-     * @param pwmPin
-     * @param c
-     * @param de
-     * @param tm
+     * @param ctrl
+     * @param dormancyEvent
+     * @param tempMeasure
      */
-    Core(uint8_t buzzPin, Ctrl *c, DormancyEvent *de, TempMeasure *tm);
+    Core(uint8_t buzzPin,
+         Ctrl *ctrl,
+         DormancyEvent *dormancyEvent,
+         TempMeasure *tempMeasure,
+         uint8_t pwmPin, bool isPMOS = true);
 
-    void setup(uint8_t pwmPin);
+    void setup();
+
+
 
     /**
      * 更新UIData 控制蜂鸣器 温度检测 温控 按键检测

@@ -36,12 +36,13 @@ Ctrl *rotaryCtrl = new RotaryCtrl(ROTARY_BTU_PIN, ROTARY_A_PIN, ROTARY_B_PIN);
 Core core = Core(BUZZ_PIN,
                  rotaryCtrl,
                  buttonDormancyEvent,
-                 new MAX6675Measure(MAX6675_SCK_PIN, MAX6675_CS_PIN, MAX6675_SO_PIN));
+                 new MAX6675Measure(MAX6675_SCK_PIN, MAX6675_CS_PIN, MAX6675_SO_PIN),
+                 HEAT_PWM_PIN, true);
 U8G2 u8g2 = SSD1306_12864Driver(SDA_PIN, SCL_PIN);
 
 void setup() {
     noInterrupts();
-    core.setup(HEAT_PWM_PIN);
+    core.setup();
     screenDriverInit();
     interrupts();
 }

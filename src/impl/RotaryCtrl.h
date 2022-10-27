@@ -9,6 +9,8 @@
 #include "core/Ctrl.h"
 #include "RotaryEncoder.h"
 
+extern Ctrl *rotaryCtrl;
+
 class RotaryCtrl : public Ctrl {
 
 private:
@@ -23,11 +25,34 @@ private:
 
 public:
 
-    RotaryCtrl(uint8_t buttonPin, uint8_t aOutPin, uint8_t bOutPin);
+    RotaryCtrl(uint8_t buttonPin, uint8_t aOutPin, uint8_t bOutPin) {
+        pinMode(buttonPin, INPUT_PULLUP);
+        pinMode(aOutPin, INPUT_PULLUP);
+        pinMode(bOutPin, INPUT_PULLUP);
 
-    void attachButtonInterrupt() override;
+        this->button = OneButton(buttonPin);
+        button.setDebounceTicks(25);
+        button.setClickTicks(30);
+        button.setPressTicks(500);
+    }
+
+    void attachButtonInterrupt() override {
+        button.attachClick([]() {
+            rotaryCtrl->pushCtrl(CONFIRM);
+        });
+        button.attachDoubleClick([]() {
+            rotaryCtrl->pushCtrl(BACK);
+        });
+        button.attachLongPressStop([]() {
+            rotaryCtrl->pushCtrl(MENU);
+        });
+
+//    attachButtonInterrupt(aOutPin, []() {
+//
+//    }, CHANGE);
+    }
 };
 
-extern Ctrl *rotaryCtrl;
+
 
 #endif //ARDUINOESPHEAT_ROTARYCTRL_H

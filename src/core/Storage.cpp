@@ -1,7 +1,6 @@
 //
-// Created by mdmbct on 10/1/22.
+// Created by mdmbct on 2022/10/27.
 //
-
 #include "Storage.h"
 
 // 来自：https://github.com/esp8266/Arduino/issues/1539
@@ -32,9 +31,10 @@ void loadSettings(Settings settings) {
     }
 }
 
+/**
+ * 设置页中每修改一个数据调用对应的setXXX函数临时保存
+ * 最后只在离开设置页面调用该函数写入epprom
+ */
 void saveSettings(Settings settings) {
     storeStruct(&settings, sizeof(settings));
 }
-
-
-

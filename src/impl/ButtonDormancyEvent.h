@@ -13,11 +13,18 @@ private:
 
 public:
 
-    explicit ButtonDormancyEvent(uint8_t pin);
+    explicit ButtonDormancyEvent(uint8_t pin) {
+        this->pin = pin;
+        pinMode(pin, INPUT_PULLUP);
+    }
 
-    bool isDormancy(unsigned long curTime) override;
+    bool isDormancy(unsigned long curTime) override {
+        return false;
+    }
 
-    void checkState();
+    void checkState() {
+
+    }
 
 };
 

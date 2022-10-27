@@ -20,9 +20,26 @@ private:
     double setpoint = 0;
 public:
 
-    TempCtrler(uint8_t pwmPin, bool _isPMOS);
+    TempCtrler(uint8_t pwmPin, bool isPMOS = true) : pwmPin(pwmPin), isPMOS(isPMOS) {
+        pinMode(pwmPin, OUTPUT);
+        // 初始化的时候 关闭加热
+        stopHeat();
+        // 初始化PID
+        TipConf tc = uiData.settings.tipConfs[uiData.settings.curTipIndex];
+        this->pid = new PID(&uiData.currentTemp, &pidOut, &setpoint, tc.p, tc.i, tc.d, DIRECT);
+        // PID输出限幅
+        pid->SetOutputLimits(0, 255);
+        // PID控制模式
+        pid->SetMode(AUTOMATIC);
+    }
 
-    void stopHeat() const;
+    void stopHeat() const {
+        if (isPMOS) {
+            digitalWrite(pwmPin, HIGH);
+        } else {
+            digitalWrite(pwmPin, LOW);
+        }
+    }
 
     /**
      * 温控调温
@@ -30,9 +47,19 @@ public:
      * @param count 获取到的当前温度数量
      * @param targetTemp 目标温度
      */
-    void heat(float curTemp, float targetTemp) const;
+    void heat(float curTemp, float targetTemp) const {
+        // todo: PID调温
+        uint16_t pwmOut = 0;
+        if (isPMOS) {
+            digitalWrite(pwmPin, 255 - pwmOut);
+        } else {
+            digitalWrite(pwmPin, pwmOut);
+        }
+    }
 
-    uint16_t getAvgTemp();
+    uint16_t getAvgTemp() {
+        return avgTemp;
+    }
 
 };
 

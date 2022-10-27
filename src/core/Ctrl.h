@@ -33,23 +33,53 @@ protected:
     CtrlTypeFIFOQueue ctrlQueue{};
 
 public:
-    Ctrl();
+    Ctrl() {
+        ctrlQueue.front = ctrlQueue.rear = 0;
+    }
 
-    void pushCtrl(CtrlType ct);
+    void pushCtrl(CtrlType ct) {
+        if (ctrlQueue.rear < MAX_FIFO_QUEUE_SIZE) {
+            // 队列未满
+            // 队列末尾添加元素 队尾指针加一
+            ctrlQueue.data[ctrlQueue.rear + 1] = ct;
+            ctrlQueue.rear = (ctrlQueue.rear + 1) % MAX_FIFO_QUEUE_SIZE;
+        }
+    }
 
     /**
      * 从队列中弹出当前操作
      * @return
      */
-    CtrlType popCtrl();
+    CtrlType popCtrl() {
+        if (ctrlQueue.rear != ctrlQueue.front) {
+            CtrlType ctrlType = ctrlQueue.data[ctrlQueue.front];
+            ctrlQueue.front = (ctrlQueue.front + 1) % MAX_FIFO_QUEUE_SIZE;
+            return ctrlType;
+        } else {
+            // 对空
+            return NO_CTRL;
+        }
+    }
 
     /**
      * 获取当前操作 操作仍保存在队列中
      * @return
      */
-    CtrlType curCtrl();
+    CtrlType curCtrl() {
+        if (ctrlQueue.rear != ctrlQueue.front) {
+            CtrlType ctrlType = ctrlQueue.data[ctrlQueue.front];
+            return ctrlType;
+        } else {
+            // 对空
+            return NO_CTRL;
+        }
+    }
 
-    void clearCtrlQueue();
+    void clearCtrlQueue() {
+        for (int i = ctrlQueue.front; i <= ctrlQueue.rear; ++i) {
+            ctrlQueue.data[i] = NO_CTRL;
+        }
+    }
 
     /**
      * 添加中断
